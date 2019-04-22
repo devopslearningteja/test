@@ -1,0 +1,30 @@
+sudo apt-get update
+sudo apt-get install default-jdk
+sudo groupadd tomcat
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+cd /tmp
+curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz
+sudo mkdir /opt/tomcat
+sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
+cd /opt/tomcat
+sudo chgrp -R tomcat /opt/tomcat
+sudo chmod -R g+r conf
+sudo chmod g+x conf
+sudo chown -R tomcat webapps/ work/ temp/ logs/
+sudo nano /etc/systemd/system/tomcat.service
+for above cmd create one template
+sudo systemctl daemon-reload
+sudo systemctl start tomcat
+sudo systemctl status tomcat
+sudo ufw allow 8080
+sudo systemctl enable tomcat
+sudo nano /opt/tomcat/conf/tomcat-users.xml
+crete tomcat-users.xml template
+sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
+
+sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
+
+create cntext.xml template
+
+sudo systemctl restart tomcat
+
